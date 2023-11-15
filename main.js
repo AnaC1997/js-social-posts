@@ -123,13 +123,13 @@ posts.forEach(element => {
 <div class="post__footer">
     <div class="likes js-likes">
         <div class="likes__cta">
-            <a class="like-button  js-like-button" href="#" data-postid="1">
+            <a class="like-button  js-like-button" href="#" data-postid="${element.id}">
                 <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                 <span class="like-button__label">Mi Piace</span>
             </a>
         </div>
         <div class="likes__counter">
-            Piace a <b id="like-counter-1" class="js-likes-counter">${element.likes}</b> persone
+            Piace a <b id="like-counter-${element.id}" class="js-likes-counter">${element.likes}</b> persone
         </div>
     </div> 
 </div>            
@@ -142,10 +142,21 @@ postsList.innerHTML += postsHTML;
 
 //al clicare su "Mi Piace" cambiamo il colore al testo del bottone.
 
-const like = document.querySelector(".like-button__label");
+let like = document.querySelectorAll(".like-button");
 
-like.addEventListener("click", function(){
-    console.log("Hai clicato mi piace")
+like.forEach((btn, i)=> {
 
-    like.classList.add("like-button--liked")
+    btn.addEventListener("click", function(e){
+ 
+
+        e.preventDefault(); // previene il comportamento di default
+        console.log("Hai clicato mi piace", btn)
+    
+        btn.classList.toggle("like-button--liked")
+    
+    
+    })
+
 })
+
+
